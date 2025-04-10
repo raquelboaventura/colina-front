@@ -10,7 +10,7 @@ body {
 }
 
 header {
-  background-image: url('../img/bg-menu.png');
+  background-image: url('../src/img/bg-menu.png');
   background-size: cover;
   height: 6.12rem;
   display: flex;
