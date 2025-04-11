@@ -1,0 +1,214 @@
+/* RESET BÁSICO */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Inter', sans-serif;
+    background-color: #f7f5fb;
+    color: #2c2237;
+}
+
+/* HEADER E FOOTER */
+header,
+footer {
+    background-color: #321838;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.title {
+    font-family: monospace;
+    display: flex;
+    align-items: center;
+    font-weight: bolder;
+    margin-left: -19px;
+    font-size: 1.5rem;
+    color: white;
+}
+
+/* CONTAINER HEADER */
+.container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 10px 30px;
+}
+
+.search {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.search form {
+    display: flex;
+    align-items: center;
+}
+
+.search input[type="text"] {
+    width: 500px;
+    padding: 6px;
+    border-radius: 20px 0 0 20px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.search button {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-left: none;
+    background-color: white;
+    color: black;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.actions a {
+    text-decoration: none;
+    color: #d9cadb;
+    font-size: 14px;
+}
+
+.actions a:hover {
+    color: #ffffff;
+}
+
+.icone-teste {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+/* CONTEÚDO PRINCIPAL */
+main {
+    padding: 2rem;
+    flex: 1;
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #5e5571;
+}
+
+/* TABELA DE LIVROS */
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 16px;
+    table-layout: auto;
+}
+
+thead th {
+    text-align: left;
+    padding: 12px 16px;
+    background-color: #ffffff;
+    color: #6f6482;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-top: 1px solid #e0ddee;
+}
+
+thead th:first-child {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+thead th:last-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+tbody tr {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
+}
+
+td {
+    padding: 16px;
+    vertical-align: middle;
+    font-size: 0.95rem;
+    word-break: break-word;
+    color: #2c2237;
+}
+
+/* TÍTULO COM MINIATURA */
+.titulo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.capa-img {
+    width: 50px;
+    height: 75px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+}
+
+/* PREÇO E AÇÕES */
+td.preco {
+    font-weight: bold;
+}
+
+td.acao {
+    text-align: right;
+    font-size: 20px;
+    color: #6f6482;
+    cursor: pointer;
+    padding-right: 16px;
+}
+
+.gear-icon {
+    background-color: #f3f0f8;
+    padding: 8px;
+    border-radius: 12px;
+    display: inline-block;
+    transition: background-color 0.2s;
+}
+
+.gear-icon:hover {
+    background-color: #e0d7f0;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+        min-width: 700px;
+    }
+}
