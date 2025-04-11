@@ -37,18 +37,73 @@
                 </div>
 
                 <div class="grid">
-                    <div class="card vermelho">= <br> Listar<br>Livros</div>
-                    <div class="card rosa">+ <br> Cadastrar<br>Livros</div>
-                    <div class="card roxo">+ <br> Cadastrar<br>Empréstimo</div>
-                    <div class="card amarelo">= <br> Listar<br>Empréstimos</div>
-                    <div class="card verde">+ <br> Cadastrar<br>Cliente</div>
-                    <div class="card vermelho">= <br> Listar<br>Clientes</div>
+                    <div class="card vermelho" id="btnTodosLivros">= <br> Listar<br>Livros</div>
+                    <div class="card rosa" id="openModal">+ <br> Cadastrar<br>Livros</div>
+                    <div class="card roxo" id="btnCadastroEmprestimo">+ <br> Cadastrar<br>Empréstimo</div>
+                    <div class="card amarelo" id="btnListaEmprestimos">= <br> Listar<br>Empréstimos</div>
+                    <div class="card verde" id="btnCadastrarCliente">+ <br> Cadastrar<br>Cliente</div>
+                    <div class="card vermelho" id="btnListaClientes">= <br> Listar<br>Clientes</div>
                 </div>
 
                 <img src="assets/img/img-signup.png" class="mascote" />
             </div>
 
         </div>
+
+        <div id="modal" class="modal">
+            <form class="modal-content" id="livroForm">
+                <span class="close">&times;</span>
+                <h2 id="titulo-cadastro">+ Cadastrar livro</h2>
+                <div class="input-container">
+                    <label>Título</label>
+                    <input id="titulo" type="text" placeholder="Título do livro" required>
+                </div>
+                
+                <div class="input-container">
+                    <label>Autor</label>
+                    <input id="autor" type="text" placeholder="Nome do autor" required>
+                </div>
+                
+                <div class="input-container">
+                    <label>Editora</label>
+                    <input id="editora" type="text" placeholder="Nome da editora" required>
+                </div>
+                
+                <div class="input-container-menor">
+                    <div class="input-container">
+                        <label>ISBN</label>
+                        <input id="isbn" type="text" placeholder="Número ISBN">
+                    </div>
+                    <div class="input-container">
+                        <label>Páginas</label>
+                        <input id="paginas" type="text" placeholder="0">
+                    </div>
+                    <div class="input-container">
+                        <label>Publicação</label>
+                        <input id="publicacao" type="date" placeholder="">
+                    </div>
+                    <div class="input-container">
+                        <label>Gênero</label>
+                        <input id="genero" type="text" placeholder="Romance">
+                    </div>
+                    <div class="input-container">
+                        <label>Quantidade</label>
+                        <input id="quantidade" type="number" placeholder="0">
+                    </div>
+                    <div class="input-container">
+                        <label>Preço</label>
+                        <input id="preco" type="text" placeholder="R$ 00,00">
+                    </div>
+                </div>
+                
+                <div class="botoes">
+                    <button class="cancel-btn">Limpar</button>
+                    <button class="register-btn">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+        <div id="toast" class="toast">📚 Livro cadastrado com sucesso!</div>
+
     </main>
 
     <footer>
