@@ -3,14 +3,14 @@ import { doGet } from './script-request.js';
 document.addEventListener("DOMContentLoaded", () => {
     const tbody = document.getElementById("clientes-tbody");
 
-    doGet("/cliente/all")
+    doGet("cliente/all")
         .then(clientes => {
             tbody.innerHTML = ""; // limpa antes de adicionar
             clientes.forEach(cliente => {
                 const tr = document.createElement("tr");
 
                 tr.innerHTML = `
-                <td>${cliente.id}</td>
+                <td>${cliente.id_cliente}</td>
                 <td>${cliente.nome}</td>
                 <td>${cliente.cpf}</td>
                 <td class="acao">

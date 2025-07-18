@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const row = document.createElement("tr");
 
                 row.innerHTML = `
-                    <td>${livro.id}</td>
+                    <td>${livro.id_livro}</td>
                     <td class="titulo-cell">
                         <div class="titulo-wrapper">
                             <img src="${livro.imagem || 'assets/img/placeholder.png'}" alt="Capa" class="capa-img" />
