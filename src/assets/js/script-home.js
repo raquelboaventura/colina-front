@@ -44,18 +44,53 @@ document.getElementById("livroForm").addEventListener("submit", function (event)
         },
         body: JSON.stringify(dadosLivro),
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log("Resposta do servidor:", data);
-        document.getElementById("livroForm").reset(); 
-        showToast(); // Limpa o formulário após sucesso
-    })
-    .catch(error => {
-        console.error("Erro ao cadastrar livro:", error, dadosLivro);
-    });
+        .then(response => response.json())
+        .then(data => {
+            console.log("Resposta do servidor:", data);
+            document.getElementById("livroForm").reset();
+            showToast(); // Limpa o formulário após sucesso
+        })
+        .catch(error => {
+            console.error("Erro ao cadastrar livro:", error, dadosLivro);
+        });
 });
 
-// Fechar modal ao clicar no "X"
-document.getElementById("fecharModal").addEventListener("click", function() {
-    document.getElementById("modal").style.display = "none";
+// Seletores
+const modalLivro = document.getElementById("modal");
+const modalCliente = document.getElementById("modal-cliente");
+const btnOpenModalCliente = document.getElementById("openModalCliente");
+const spanCloseCliente = document.querySelector(".close-cliente");
+const formCliente = document.getElementById("clienteForm");
+const toastCliente = document.getElementById("toast-cliente");
+
+// Abrir modal Cliente
+btnOpenModalCliente.addEventListener("click", () => {
+    modalCliente.style.display = "flex"; // Use 'flex' pra centralizar
 });
+
+// Fechar modal Cliente (botão X)
+spanCloseCliente.addEventListener("click", () => {
+    modalCliente.style.display = "none";
+});
+
+// Fechar modais clicando fora
+window.addEventListener("click", (event) => {
+    if (event.target === modalLivro) {
+        modalLivro.style.display = "none";
+    }
+    if (event.target === modalCliente) {
+        modalCliente.style.display = "none";
+    }
+});
+
+// Submeter formulário Cliente
+formCliente.addEventListener("submit", (event) => {
+    event.preventDefault();
+    modalCliente.style.display = "none";
+    toastCliente.classList.add("show");
+    setTimeout(() => {
+        toastCliente.classList.remove("show");
+    }, 3000);
+    formCliente.reset();
+});
+

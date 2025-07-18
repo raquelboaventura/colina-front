@@ -186,7 +186,7 @@ main {
 .modal {
   display: none;
   position: fixed;
-  z-index: 10;
+  z-index: 1000;
   left: 0;
   top: 0;
   width: 100%;
@@ -278,13 +278,21 @@ main {
   color: white;
 }
 
-.close {
+.close, .close-cliente {
   position: absolute;
   top: 12px;
   right: 16px;
   font-size: 22px;
   cursor: pointer;
   color: #321838;
+}
+
+.close:hover,
+.close:focus,
+.close-cliente:hover,
+.close-cliente:focus {
+  color: black;
+  text-decoration: none;
 }
 
 .toast {
@@ -300,10 +308,15 @@ main {
   transform: translateX(-50%);
   border-radius: 20px;
   z-index: 1000;
+  font-size: 17px;
+  opacity: 0;
+  transition: opacity 0.5s, bottom 0.5s;
 }
 
 .toast.show {
   visibility: visible;
+  opacity: 1;
+  bottom: 50px;
   animation: fadeIn 0.5s, fadeOut 1s 3s;
 }
 

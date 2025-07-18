@@ -41,7 +41,7 @@
                     <div class="card rosa" id="openModal">+ <br> Cadastrar<br>Livros</div>
                     <div class="card roxo" id="btnCadastroEmprestimo">+ <br> Cadastrar<br>Empréstimo</div>
                     <div class="card amarelo" id="btnListaEmprestimos">= <br> Listar<br>Empréstimos</div>
-                    <div class="card verde" id="btnCadastrarCliente">+ <br> Cadastrar<br>Cliente</div>
+                    <button class="card verde btn-cadastrar" id="openModalCliente">+ Novo Cliente</button>
                     <a class="card vermelho" id="btnListaClientes" href="listacliente.html">= <br>
                         Listar<br>Clientes</a>
                 </div>
@@ -98,12 +98,35 @@
                 </div>
 
                 <div class="botoes">
-                    <button class="cancel-btn">Limpar</button>
+                    <button type="reset" class="cancel-btn">Limpar</button>
                     <button class="register-btn">Cadastrar</button>
                 </div>
             </form>
         </div>
         <div id="toast" class="toast">📚 Livro cadastrado com sucesso!</div>
+
+        <div id="modal-cliente" class="modal">
+            <form class="modal-content" id="clienteForm">
+                <span class="close-cliente">&times;</span>
+                <h2 id="titulo-cadastro-cliente">+ Cadastrar cliente</h2>
+
+                <div class="input-container">
+                    <label>Nome completo</label>
+                    <input id="nome-cliente" type="text" placeholder="Nome do cliente" required>
+                </div>
+
+                <div class="input-container">
+                    <label>CPF</label>
+                    <input id="cpf-cliente" type="text" placeholder="Somente números" maxlength="11" required>
+                </div>
+
+                <div class="botoes">
+                    <button type="reset" class="cancel-btn">Limpar</button>
+                    <button type="submit" class="register-btn">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+
 
     </main>
 
