@@ -83,14 +83,45 @@ window.addEventListener("click", (event) => {
     }
 });
 
+
+function showToastClient() {
+    let toast = document.getElementById("toast-cliente");
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 4000);
+}
+
 // Submeter formulário Cliente
 formCliente.addEventListener("submit", (event) => {
     event.preventDefault();
-    modalCliente.style.display = "none";
-    toastCliente.classList.add("show");
-    setTimeout(() => {
-        toastCliente.classList.remove("show");
-    }, 3000);
-    formCliente.reset();
+
+    const dadosCliente = {
+        nome: document.getElementById("nome-cliente").value,
+        cpf: document.getElementById("cpf-cliente").value
+    };
+
+    // Envia os dados para o backend
+    fetch("http://localhost:8081/ApiColina/cliente/cadastro", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dadosCliente),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Erro ao cadastrar cliente");
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Cliente cadastrado:", data);
+            modalCliente.style.display = "none";
+            showToastClient();
+            formCliente.reset();
+        })
+        .catch(error => {
+            console.error("Erro ao cadastrar cliente:", error);
+            alert("Erro ao cadastrar cliente. Verifique os dados e tente novamente.");
+        });
 });
 

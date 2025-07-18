@@ -20,15 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     <td>${livro.editora}</td>
                     <td>R$ ${livro.preco.toFixed(2).replace(".", ",")}</td>
                     <td class="acao">
-                        <span class="gear-icon" data-id="${livro.id}" data-livro='${JSON.stringify(livro)}'>⚙️</span>
+                        <span class="gear-icon" data-id="${livro.id_livro}" data-livro='${JSON.stringify(livro)}'>⚙️</span>
                     </td>
                 `;
 
                 // Evento para abrir o modal com os dados preenchidos
                 row.querySelector(".gear-icon").addEventListener("click", function () {
                     const livro = JSON.parse(this.getAttribute("data-livro"));
-
-                    document.getElementById("edit-id").value = livro.id;
+                    document.getElementById("edit-id_livro").value = livro.id_livro;
                     document.getElementById("edit-titulo").value = livro.titulo;
                     document.getElementById("edit-autor").value = livro.autor;
                     document.getElementById("edit-editora").value = livro.editora;
@@ -68,7 +67,7 @@ document.getElementById("form-editar-livro").addEventListener("submit", function
     event.preventDefault();
 
     const livroAtualizado = {
-        id: document.getElementById("edit-id").value,
+        id: document.getElementById("edit-id_livro").value,
         titulo: document.getElementById("edit-titulo").value,
         autor: document.getElementById("edit-autor").value,
         editora: document.getElementById("edit-editora").value,

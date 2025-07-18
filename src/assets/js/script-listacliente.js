@@ -1,78 +1,50 @@
 import { doGet } from './script-request.js';
 
+let clienteId = null;
+
 document.addEventListener("DOMContentLoaded", () => {
     const tbody = document.getElementById("clientes-tbody");
 
-    doGet("cliente/all")
-        .then(clientes => {
-            tbody.innerHTML = ""; // limpa antes de adicionar
-            clientes.forEach(cliente => {
-                const tr = document.createElement("tr");
+    tbody.addEventListener("click", (event) => {
+        if (event.target.classList.contains("gear-icon")) {
+            const cliente = JSON.parse(event.target.getAttribute("data-cliente"));
+            abrirModalCliente(cliente);
+        }
+    });
 
-                tr.innerHTML = `
-                <td>${cliente.id_cliente}</td>
-                <td>${cliente.nome}</td>
-                <td>${cliente.cpf}</td>
-                <td class="acao">
-                    <span class="gear-icon" data-id="${cliente.id}" data-cliente='${JSON.stringify(cliente)}'>⚙️</span>
-                </td>
-            `;
+    doGet("/cliente/all")
+  .then(clientes => {
+    console.log("Clientes:", clientes);
+    if (!Array.isArray(clientes)) {
+      console.error("Resposta não é array:", clientes);
+      return;
+    }
 
-                tbody.appendChild(tr);
-            });
-            tbody.addEventListener("click", (event) => {
-                if (event.target.classList.contains("gear-icon")) {
-                    const cliente = JSON.parse(event.target.getAttribute("data-cliente"));
-                    abrirModalCliente(cliente);
-                }
-            });
-
-        })
-        .catch(error => {
-            console.error("Erro:", error);
-        });
-    /* fetch("http://localhost:8081/ApiColina/cliente/all")
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Erro ao buscar os clientes");
-            }
-            return response.json();
-        })
-        .then(clientes => {
-            tbody.innerHTML = ""; // limpa antes de adicionar
-            clientes.forEach(cliente => {
-                const tr = document.createElement("tr");
-
-                tr.innerHTML = `
-                    <td>${cliente.id}</td>
-                    <td>${cliente.nome}</td>
-                    <td>${cliente.cpf}</td>
-                    <td class="acao">
-                        <span class="gear-icon" data-id="${cliente.id}" data-cliente='${JSON.stringify(cliente)}'>⚙️</span>
-                    </td>
-                `;
-
-                tbody.appendChild(tr);
-            });
-            tbody.addEventListener("click", (event) => {
-                if (event.target.classList.contains("gear-icon")) {
-                    const cliente = JSON.parse(event.target.getAttribute("data-cliente"));
-                    abrirModalCliente(cliente);
-                }
-            });
-            
-        })
-        .catch(error => {
-            console.error("Erro:", error);
-        }); */
+    tbody.innerHTML = ""; // limpa antes
+    clientes.forEach(cliente => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${cliente.id_cliente}</td>
+        <td>${cliente.nome}</td>
+        <td>${cliente.cpf}</td>
+        <td class="acao">
+          <span class="gear-icon" data-id="${cliente.id_cliente}" data-cliente='${JSON.stringify(cliente)}'>⚙️</span>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  })
+  .catch(error => {
+    console.error("Erro ao buscar clientes:", error);
+  });
 });
 
-// Abrir modal e preencher com dados
 function abrirModalCliente(cliente) {
-    document.getElementById("clienteId").value = cliente.id;
-    document.getElementById("clienteNome").value = cliente.nome;
-    document.getElementById("clienteCpf").value = cliente.cpf;
-    document.getElementById("modal-cliente").style.display = "flex";
+  clienteId = cliente.id_cliente;
+  document.getElementById("clienteId").value = clienteId;
+  document.getElementById("clienteNome").value = cliente.nome;
+  document.getElementById("clienteCpf").value = cliente.cpf;
+  document.getElementById("modal-cliente").style.display = "flex";
 }
 
 // Fechar modal
@@ -91,7 +63,6 @@ window.addEventListener("click", (event) => {
 document.getElementById("clienteForm").addEventListener("submit", function (event) {
     event.preventDefault();
 
-    const clienteId = document.getElementById("clienteId").value;
     const clienteAtualizado = {
         nome: document.getElementById("clienteNome").value,
         cpf: document.getElementById("clienteCpf").value
