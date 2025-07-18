@@ -1,21 +1,30 @@
+/* RESET BÁSICO */
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
-html, body {
+html {
   height: 100%;
-  margin: 0;
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #ffffff;
-  color: #321838;
+  height: 100%;
+  margin: 0;
   display: flex;
   flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  background-color: #f7f5fb;
+  color: #2c2237;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+}
+
+/* HEADER E FOOTER */
 header,
 footer {
   background-color: #321838;
@@ -24,28 +33,22 @@ footer {
   text-align: center;
 }
 
-main {
-  padding: 2rem;
-  flex: 1;
-}
-
 .title {
   font-family: monospace;
   display: flex;
   align-items: center;
   font-weight: bolder;
-  margin: 0;
-  margin-left: -30px;
+  margin-left: -19px;
   font-size: 1.5rem;
   color: white;
 }
 
+/* CONTAINER HEADER */
 .container {
   display: flex;
   justify-content: space-between;
   gap: 20px;
   padding: 10px 30px;
-
 }
 
 .search {
@@ -77,7 +80,6 @@ main {
   cursor: pointer;
 }
 
-
 .actions {
   display: flex;
   align-items: center;
@@ -90,7 +92,7 @@ main {
   font-size: 14px;
 }
 
-.actions a :hover {
+.actions a:hover {
   color: #ffffff;
 }
 
@@ -104,10 +106,9 @@ main {
   background-color: #fff;
 }
 
-body {
-  margin: 0;
-  font-family: sans-serif;
-  background: #fff;
+main {
+  padding: 2rem;
+  flex: 1;
 }
 
 .dashboard {
@@ -177,7 +178,6 @@ body {
   margin-right: -70px;
 }
 
-
 .wrapper {
   flex: 1;
 }
@@ -186,13 +186,12 @@ body {
 .modal {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 10;
   left: 0;
   top: 0;
   width: 100%;
-  font-size: 15px;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
 }
@@ -200,97 +199,93 @@ body {
 /* Caixa do modal */
 .modal-content {
   background: #ffe6f2;
-  padding: 50px;
-  border-radius: 10px;
-  width: 400px;
-  height: 450px;
+  padding: 30px 40px;
+  border-radius: 12px;
+  width: 500px;
+  max-width: 90%;
   position: relative;
+  display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
 }
 
-.model-content .input-container label{
-  display: block; /* Faz o label ocupar a linha toda */
-  margin-bottom: 5px; /* Espaço entre label e input */
-}
-
-.modal-content input, .modal-content input:active{
-  color: #090D1F;
-  background-color: #E7E7E7;
-  padding: 5px;
-  border-radius: 8px;
-  border-style: none;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-}
-
-.modal-content input:focus-visible {
-  outline: none; /* Remove a borda de foco padrão */
-  border: none;  /* Remove a borda do input */
-  box-shadow: none; /* Remove qualquer sombra */
-}
-
-#titulo-cadastro {
-  font-size: 20px;
-  margin-bottom: 10px;
+.modal-content h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #321838;
 }
 
 .input-container {
   display: flex;
-  flex-direction: column; /* Coloca os itens em coluna */
-  gap: 3px; /* Espaço entre label e input */
+  flex-direction: column;
   margin-bottom: 15px;
 }
 
-.input-container-menor{
-  display: flex;
-  flex-wrap: wrap;
-  align-content: stretch;
-  justify-content: space-between;
-  align-items: center;
-  }
-
-  input[type="date"] {
-    appearance: none; /* Remove o estilo padrão do navegador */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    
-    color: #333;
-    cursor: pointer;
+.input-container label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #321838;
 }
 
-.botoes{
-  display: flex;
-  gap: 5px;
+.modal-content input,
+.modal-content select {
+  background: #f7f5fb;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s;
 }
 
-/* Botão de fechar */
-.close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 24px;
+.modal-content input:focus,
+.modal-content select:focus {
+  border-color: #b64675;
+}
+
+.input-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.input-row .input-container {
+  flex: 1;
+}
+
+.botoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.register-btn,
+.cancel-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
+  font-weight: bold;
 }
 
-/* Botão de cadastro */
-.register-btn, .cancel-btn{
+.register-btn {
   background: #b64675;
   color: white;
-  border: none;
-  padding: 10px;
-  margin-top: 10px;
-  cursor: pointer;
-  width: 100%;
-  border-radius: 5px;
 }
 
-.cancel-btn{
+.cancel-btn {
   background: #62575b;
-
+  color: white;
 }
 
+.close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #321838;
+}
 
 .toast {
   visibility: hidden;
@@ -306,15 +301,18 @@ body {
   border-radius: 20px;
   z-index: 1000;
 }
+
 .toast.show {
   visibility: visible;
   animation: fadeIn 0.5s, fadeOut 1s 3s;
 }
+
 @keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
+
 @keyframes fadeOut {
-  from {opacity: 1;}
-  to {opacity: 0;}
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
