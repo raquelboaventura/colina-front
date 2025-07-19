@@ -87,3 +87,26 @@ document.getElementById("clienteForm").addEventListener("submit", function (even
             console.error("Erro ao atualizar cliente:", error);
         });
 });
+
+document.querySelector(".btnExcluir").addEventListener("click", function (event) {
+    event.preventDefault(); // Impede o submit padrão
+
+    const clienteId = document.getElementById("clienteId").value;
+
+    if (confirm("Tem certeza que deseja excluir este cliente?")) {
+        fetch(`http://localhost:8081/ApiColina/cliente/delete/${clienteId}`, {
+            method: "DELETE"
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("Cliente excluído com sucesso!");
+                location.reload();
+            } else {
+                alert("Erro ao excluir cliente.");
+            }
+        })
+        .catch(error => {
+            console.error("Erro ao excluir cliente:", error);
+        });
+    }
+});

@@ -324,3 +324,7 @@ td.acao {
     color: #666;
     cursor: pointer;
 }
+
+.btnExcluir{
+    background-color: red;
+}

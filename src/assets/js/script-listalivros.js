@@ -62,7 +62,6 @@ window.addEventListener("click", function (event) {
     }
 });
 
-// Submete edição
 document.getElementById("form-editar-livro").addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -79,6 +78,8 @@ document.getElementById("form-editar-livro").addEventListener("submit", function
         preco: document.getElementById("edit-preco").value
     };
 
+    console.log("Enviando edição:", livroAtualizado);
+
     fetch(`http://localhost:8081/ApiColina/livros/atualiza/${livroAtualizado.id}`, {
         method: "PUT",
         headers: {
@@ -90,7 +91,6 @@ document.getElementById("form-editar-livro").addEventListener("submit", function
         if (!response.ok) {
             throw new Error("Erro ao atualizar o livro");
         }
-        console.log(livroAtualizado)
         return response;
     })
     .then(data => {
@@ -102,3 +102,39 @@ document.getElementById("form-editar-livro").addEventListener("submit", function
         console.error("Erro ao atualizar livro:", error);
     });
 });
+
+// Evento do botão Excluir (fora do submit!)
+const btnExcluir = document.querySelector('#form-editar-livro button[type="submit"]:nth-of-type(2)');
+if (btnExcluir) {
+    btnExcluir.addEventListener("click", function(event) {
+        event.preventDefault(); // Impede o submit padrão
+
+        const livroId = document.getElementById("edit-id_livro").value;
+        console.log("Botão excluir clicado. ID do livro:", livroId);
+
+        if (confirm("Tem certeza que deseja excluir este livro?")) {
+            console.log("Usuário confirmou exclusão. Enviando DELETE...");
+            fetch(`http://localhost:8081/ApiColina/livros/delete/${livroId}`, {
+                method: "DELETE"
+            })
+            .then(response => {
+                console.log("Resposta do backend:", response);
+                if (response.ok) {
+                    alert("Livro excluído com sucesso!");
+                    document.getElementById("modal-edicao").style.display = "none";
+                    location.reload();
+                } else {
+                    alert("Erro ao excluir livro.");
+                }
+            })
+            .catch(error => {
+                console.error("Erro ao excluir livro:", error);
+            });
+        } else {
+            console.log("Usuário cancelou exclusão.");
+        }
+    });
+} else {
+    console.error("Botão de excluir livro não encontrado!");
+}
+ 
